@@ -2,16 +2,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Unilib.DatabaseUtil;
+using Unilib.Models;
 
 namespace Unilib.Pages.EditPages
 {
     public class ReturnBookModel : PageModel
     {
+        public BookStudent borrowedBook = new();
+        public IActionResult OnGet(int Id) 
+        {
+            using (UnilibContext context = new()) 
+            {
+                borrowedBook = context.BookStudents.FirstOrDefault(a => a.Id == Id);
+            }
+            return Page();
+        }
         public IActionResult OnPost(int Id)
         {
             using (UnilibContext context = new())
             {
-                var borrowedBook = context.BookStudents.FirstOrDefault(a => a.Id == Id);
+                borrowedBook = context.BookStudents.FirstOrDefault(a => a.Id == Id);
 
                 if (borrowedBook == null)
                 {

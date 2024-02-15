@@ -7,8 +7,9 @@
 <form method="post">
     <div class="form-group">
         <label for="returndate">Return Date:</label>
-        <input type="text" class="form-control" id="returndate" name="ReturnDate" value="@DateOnly.FromDateTime(DateTime.Today)" readonly>
+        <input type="text" class="form-control" id="returndate" name="ReturnDate"
+               value="@(Model.borrowedBook.Return_Date == null ? DateOnly.FromDateTime(DateTime.Today) : Model.borrowedBook.Return_Date)" readonly>
     </div>
     <button type="submit" class="btn btn-primary add-btn">Save</button>
-    <a href="/MainPages/Student_Book" class="btn btn-danger">Cancel</a>
+    <a href="/MainPages/Book_Student" class="btn btn-danger">Cancel</a>
 </form>
