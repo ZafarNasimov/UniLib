@@ -1,0 +1,41 @@
+﻿@page
+@using Unilib.DatabaseUtil;
+@model BookModel
+@{
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ISBN</th>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Publication_Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @using(UnilibContext context = new())
+        {
+            @foreach (var book in context.Books)
+            {
+                <tr>
+                    <td>@book.ISBN</td>
+                    <td>@book.Title</td>
+                    <td>@book.Genre</td>
+                    <td>@book.Publication_Date</td>
+                    <td>
+                        <a class="btn btn-primary" href="/EditPages/EditBook?ISBN=@book.ISBN">Edit</a>
+                        <form method="post" asp-page-handler="Delete" asp-route-ISBN="@book.ISBN" onsubmit="return confirm('Are you sure you want to delete this book? This may lead to severe data loss of relations in database !');">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        }   
+    </tbody>
+</table>
+
+<div class="back-btn">
+    <a href="/AddPages/AddBook" class="btn btn-primary add-btn">Add</a>
+    <a href="/Index" class="btn btn-primary">Back</a>
+</div>

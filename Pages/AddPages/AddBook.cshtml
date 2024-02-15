@@ -1,0 +1,26 @@
+﻿@page
+@model Unilib.Pages.AddPages.AddBookModel
+@using Unilib.DatabaseUtil
+
+<h1>Add Book</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="isbn">ISBN:</label>
+        <input type="text" class="form-control" id="isbn" name="ISBN">
+    </div>
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" class="form-control" id="title" name="Title">
+    </div>
+    <div class="form-group">
+        <label for="genre">Genre:</label>
+        <textarea class="form-control" id="genre" name="Genre"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="publicationdate">Publication Date:</label>
+        <textarea class="form-control" id="PublicationDate" name="PublicationDate"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary add-btn">Add</button>
+    <a href="/MainPages/Book" class="btn btn-danger">Cancel</a>
+</form>

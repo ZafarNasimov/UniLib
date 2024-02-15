@@ -1,0 +1,39 @@
+﻿@page
+@using Unilib.DatabaseUtil;
+@model PublisherModel
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Contact_Info</th>
+        </tr>
+    </thead>
+    <tbody>
+        @using (UnilibContext context = new())
+        {
+            @foreach (var publisher in context.Publishers)
+            {
+                <tr>
+                    <td>@publisher.Id</td>
+                    <td>@publisher.Name</td>
+                    <td>@publisher.Address</td>
+                    <td>@publisher.Contact_Info</td>
+                    <td>
+                        <a class="btn btn-primary" href="/EditPages/EditPublisher?id=@publisher.Id">Edit</a>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@publisher.Id" onsubmit="return confirm('Are you sure you want to delete this publisher? This may lead to severe data loss of relations in database !');">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<div class="back-btn">
+    <a href="/AddPages/AddPublisher" class="btn btn-primary add-btn">Add</a>
+    <a href="/Index" class="btn btn-primary">Back</a>
+</div>

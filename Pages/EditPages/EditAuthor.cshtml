@@ -1,0 +1,20 @@
+﻿@page
+@model Unilib.Pages.EditPages.EditAuthorModel
+@using Unilib.DatabaseUtil
+
+<h1>Edit Author</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" name="Name" value="@Model.author.Name">
+    </div>
+    <div class="form-group">
+        <label for="biography">Biography:</label>
+        <textarea class="form-control" id="biography" name="Biography">@Model.author.Biography</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary add-btn">Save</button>
+    <a href="/MainPages/Author" class="btn btn-danger">Cancel</a>
+</form>
+
+

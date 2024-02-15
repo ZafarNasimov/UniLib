@@ -1,0 +1,22 @@
+﻿@page
+@model Unilib.Pages.EditPages.EditPublisherModel
+@using Unilib.DatabaseUtil
+
+<h1>Edit Publisher</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" name="Name" value="@Model.publisher.Name">
+    </div>
+    <div class="form-group">
+        <label for="address">Address:</label>
+        <textarea class="form-control" id="address" name="Address">@Model.publisher.Address</textarea>
+    </div>
+    <div class="form-group">
+        <label for="contactinfo">Contact Info:</label>
+        <textarea class="form-control" id="contactinfo" name="ContactInfo">@Model.publisher.Contact_Info</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary add-btn">Save</button>
+    <a href="/MainPages/Publisher" class="btn btn-danger">Cancel</a>
+</form>

@@ -1,0 +1,39 @@
+﻿@page
+@model AuthorModel
+@using Unilib.DatabaseUtil;
+@{
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Biography</th>
+        </tr>
+    </thead>
+    <tbody>
+        @using (UnilibContext context = new())
+        {
+            @foreach (var author in context.Authors)
+            {
+                <tr>
+                    <td>@author.Id</td>
+                    <td>@author.Name</td>
+                    <td>@author.Biography</td>
+                    <td>
+                        <a class="btn btn-primary" href="/EditPages/EditAuthor?id=@author.Id">Edit</a>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@author.Id" onsubmit="return confirm('Are you sure you want to delete this book? This may lead to severe data loss of relations in database !');">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<div class="back-btn">
+    <a href="/AddPages/AddAuthor" class="btn btn-primary add-btn">Add</a>
+    <a href="/Index" class="btn btn-primary">Back</a>
+</div>
